@@ -55,8 +55,21 @@ class CustomTasks:
         """
             ),
             agent=agent,
-            expected_output="""Output should contain a detailed description of the world and immediate surroundings.
-            Include details like characters in the scene, interactable and observable elements."""
+            expected_output="""Output should contain details of the world and immediate surroundings, characters in the scene, interactable and observable elements. It should be like a prompt for an image / video generation model - to be around 1000 characters and nothing else."""
+        )
+    
+    def generate_story_frames(self, agent, context_tasks):
+        return Task(
+            description=dedent(
+                f"""
+            Take the input of the generated scene. Then, split it into a series of frames that can be used to animate the scene. 
+
+            {self.__tip_section()}
+        """
+            ),
+            agent=agent,
+            expected_output="Output should be a series of frames. Each frame should be a prompt for an image / video generation model - to be around 1000 characters and nothing else.",
+            context=context_tasks
         )
 
     def summarize_story(self, agent):
