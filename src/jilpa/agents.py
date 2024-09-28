@@ -3,34 +3,31 @@ from textwrap import dedent
 from langchain.llms import OpenAI, Ollama
 from langchain_openai import ChatOpenAI
 
-
-# This is an example of how to define custom agents.
-# You can define as many agents as you want.
-# You can also define custom tasks in tasks.py
 class CustomAgents:
     def __init__(self):
-        self.OpenAIGPT35 = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
-        self.OpenAIGPT4 = ChatOpenAI(model="gpt-4", temperature=0.7)
-        self.Ollama = Ollama(model="openhermes")
+        self.OpenAIGPT4oMini = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+        # self.Ollama = Ollama(model="openhermes")
 
-    def agent_1_name(self):
+    def story_writer(self):
         return Agent(
-            role="Define agent 1 role here",
-            backstory=dedent(f"""Define agent 1 backstory here"""),
-            goal=dedent(f"""Define agent 1 goal here"""),
+            role="Senior Story Writer",
+            backstory=dedent(f"""You are an experienced story writer who has written stories for many open world scenarios,
+                you have created many creative characters and world elements that are very unique an engaging"""),
+            goal=dedent(f"""Create the screenplay with characters and world elements"""),
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.OpenAIGPT35,
+            llm=self.OpenAIGPT4oMini,
         )
 
-    def agent_2_name(self):
+    def animator(self):
         return Agent(
-            role="Define agent 2 role here",
-            backstory=dedent(f"""Define agent 2 backstory here"""),
+            role="Creative Animator",
+            backstory=dedent(f"""You are an experienced animator who has worked for top animation studios which emphasis on novel and creative character and world building.
+                You have collaborated with senior story writes who have developed open world stories with capbilities to expand the story infinitly."""),
             goal=dedent(f"""Define agent 2 goal here"""),
             # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
-            llm=self.OpenAIGPT35,
+            llm=self.OpenAIGPT4oMini,
         )

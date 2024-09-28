@@ -6,23 +6,13 @@ from textwrap import dedent
 from .agents import CustomAgents
 from .tasks import CustomTasks
 
-# Install duckduckgo-search for this example:
-# !pip install -U duckduckgo-search
-
-from langchain.tools import DuckDuckGoSearchRun
-
-search_tool = DuckDuckGoSearchRun()
+import agentops
 
 load_dotenv()
 
-# This is the main class that you will use to define your custom crew.
-# You can define as many agents and tasks as you want in agents.py and tasks.py
-
-
-class CustomCrew:
-    def __init__(self, var1, var2):
-        self.var1 = var1
-        self.var2 = var2
+class JilpaCrew:
+    def __init__(self, user_prompt):
+        self.user_prompt = user_prompt
 
     def run(self):
         # Define your custom agents and tasks in agents.py and tasks.py
@@ -30,24 +20,29 @@ class CustomCrew:
         tasks = CustomTasks()
 
         # Define your custom agents and tasks here
-        custom_agent_1 = agents.agent_1_name()
-        custom_agent_2 = agents.agent_2_name()
+        story_writer_agent = agents.story_writer()
+        # custom_agent_2 = agents.animator()
 
         # Custom tasks include agent name and variables as input
-        custom_task_1 = tasks.task_1_name(
-            custom_agent_1,
-            self.var1,
-            self.var2,
+        generate_world_elements_task = tasks.generate_world_elements(
+            story_writer_agent,
+            self.user_prompt
         )
 
-        custom_task_2 = tasks.task_2_name(
-            custom_agent_2,
+        generate_character_task = tasks.generate_character(
+            story_writer_agent,
+            [generate_world_elements_task]
+        )
+
+        generate_story_task = tasks.generate_story(
+            story_writer_agent,
+            [generate_world_elements_task, generate_character_task]
         )
 
         # Define your custom crew here
         crew = Crew(
-            agents=[custom_agent_1, custom_agent_2],
-            tasks=[custom_task_1, custom_task_2],
+            agents=[story_writer_agent],
+            tasks=[generate_world_elements_task, generate_story_task],
             verbose=True,
         )
 
@@ -57,12 +52,12 @@ class CustomCrew:
 
 # This is the main function that you will use to run your custom crew.
 if __name__ == "__main__":
-    print("## Welcome to Crew AI Template")
+    agentops.init()
+    print("## Welcome to Jilps AI")
     print("-------------------------------")
-    var1 = input(dedent("""Enter variable 1: """))
-    var2 = input(dedent("""Enter variable 2: """))
+    user_prompt = input(dedent("""Enter a scenario: """))
 
-    custom_crew = CustomCrew(var1, var2)
+    custom_crew = JilpaCrew(user_prompt)
     result = custom_crew.run()
     print("\n\n########################")
     print("## Here is you custom crew run result:")
