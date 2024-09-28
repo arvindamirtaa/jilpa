@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:8a2c1af38a1f494bc2db556703a05286e79946e8d9c100145e554826458ca475"
+content_hash = "sha256:9d06a187acfa3ed70b3e25f4a3a055f06f64cbdb02ed6dfa2bf6bb49081f883e"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -820,22 +820,6 @@ groups = ["default"]
 marker = "python_version == \"3.12\""
 files = [
     {file = "docx2txt-0.8.tar.gz", hash = "sha256:2c06d98d7cfe2d3947e5760a57d924e3ff07745b379c8737723922e7009236e5"},
-]
-
-[[package]]
-name = "duckduckgo-search"
-version = "6.2.13"
-requires_python = ">=3.8"
-summary = "Search for words, documents, images, news, maps and text translation using the DuckDuckGo.com search engine."
-groups = ["default"]
-marker = "python_version == \"3.12\""
-dependencies = [
-    "click>=8.1.7",
-    "primp>=0.6.3",
-]
-files = [
-    {file = "duckduckgo_search-6.2.13-py3-none-any.whl", hash = "sha256:a6618fb2744fa1d081b1bf2e47ef8051de993276a15c20f4e879a150726472de"},
-    {file = "duckduckgo_search-6.2.13.tar.gz", hash = "sha256:f89a9782f0f47d18c01a761c83453d0aef7a4335d1b6466fc47709652d5ca791"},
 ]
 
 [[package]]
@@ -2038,6 +2022,27 @@ files = [
 ]
 
 [[package]]
+name = "lumaai"
+version = "1.0.2"
+requires_python = ">=3.7"
+summary = "The official Python library for the lumaai API"
+groups = ["default"]
+marker = "python_version == \"3.12\""
+dependencies = [
+    "anyio<5,>=3.5.0",
+    "cached-property; python_version < \"3.8\"",
+    "distro<2,>=1.7.0",
+    "httpx<1,>=0.23.0",
+    "pydantic<3,>=1.9.0",
+    "sniffio",
+    "typing-extensions<5,>=4.7",
+]
+files = [
+    {file = "lumaai-1.0.2-py3-none-any.whl", hash = "sha256:f4ad8d21e41ac74f71b01bd48b0b45121f5cb1f38fe6bda1bb4ad6f5bd4cc57e"},
+    {file = "lumaai-1.0.2.tar.gz", hash = "sha256:ed33b5f18fce989b73b1681723695c330a44d583c0dd0a46f419c4958925077d"},
+]
+
+[[package]]
 name = "mako"
 version = "1.3.5"
 requires_python = ">=3.8"
@@ -2805,24 +2810,6 @@ files = [
 ]
 
 [[package]]
-name = "primp"
-version = "0.6.3"
-requires_python = ">=3.8"
-summary = "HTTP client that can impersonate web browsers, mimicking their headers and `TLS/JA3/JA4/HTTP2` fingerprints"
-groups = ["default"]
-marker = "python_version == \"3.12\""
-files = [
-    {file = "primp-0.6.3-cp38-abi3-macosx_10_12_x86_64.whl", hash = "sha256:bdbe6a7cdaaf5c9ed863432a941f4a75bd4c6ff626cbc8d32fc232793c70ba06"},
-    {file = "primp-0.6.3-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:eeb53eb987bdcbcd85740633470255cab887d921df713ffa12a36a13366c9cdb"},
-    {file = "primp-0.6.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:78da53d3c92a8e3f05bd3286ac76c291f1b6fe5e08ea63b7ba92b0f9141800bb"},
-    {file = "primp-0.6.3-cp38-abi3-manylinux_2_34_aarch64.whl", hash = "sha256:86337b44deecdac752bd8112909987fc9fa9b894f30191c80a164dc8f895da53"},
-    {file = "primp-0.6.3-cp38-abi3-musllinux_1_2_aarch64.whl", hash = "sha256:d3cd9a22b97f3eae42b2a5fb99f00480daf4cd6d9b139e05b0ffb03f7cc037f3"},
-    {file = "primp-0.6.3-cp38-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:7732bec917e2d3c48a31cdb92e1250f4ad6203a1aa4f802bd9abd84f2286a1e0"},
-    {file = "primp-0.6.3-cp38-abi3-win_amd64.whl", hash = "sha256:1e4113c34b86c676ae321af185f03a372caef3ee009f1682c2d62e30ec87348c"},
-    {file = "primp-0.6.3.tar.gz", hash = "sha256:17d30ebe26864defad5232dbbe1372e80483940012356e1f68846bb182282039"},
-]
-
-[[package]]
 name = "proto-plus"
 version = "1.24.0"
 requires_python = ">=3.7"
@@ -3181,17 +3168,6 @@ dependencies = [
 files = [
     {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
     {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
-]
-
-[[package]]
-name = "python-decouple"
-version = "3.8"
-summary = "Strict separation of settings from code."
-groups = ["default"]
-marker = "python_version == \"3.12\""
-files = [
-    {file = "python-decouple-3.8.tar.gz", hash = "sha256:ba6e2657d4f376ecc46f77a3a615e058d93ba5e465c01bbe57289bfb7cce680f"},
-    {file = "python_decouple-3.8-py3-none-any.whl", hash = "sha256:d0d45340815b25f4de59c974b855bb38d03151d81b037d9e3f463b0c9f8cbd66"},
 ]
 
 [[package]]

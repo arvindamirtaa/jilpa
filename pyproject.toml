@@ -3,18 +3,18 @@ name = "jilpa"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
-    {name = "kharish89", email = "k.harish89@gmail.com"},
+    { name = "Harish", email = "k.harish89@gmail.com" },
+    { name = "Arvind", email = "arvindamirtaa@gmail.com" },
 ]
 dependencies = [
     "crewai[tools]>=0.65.2",
-    "python-decouple>=3.8",
-    "duckduckgo-search>=6.2.13",
     "agentops>=0.3.12",
     "crewai[agentops]>=0.65.2",
+    "lumaai>=1.0.2",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 
 [tool.pdm]
