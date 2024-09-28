@@ -3,8 +3,10 @@ from textwrap import dedent
 from .dream_machine_generate_tool import LumaAIGenTool
 from .dream_machine_extend_tool import LumaAIExtendTool
 
+
 luma_gen_tool = LumaAIGenTool()
 luma_extend_tool = LumaAIExtendTool()
+
 
 
 class CustomTasks:
@@ -94,7 +96,7 @@ class CustomTasks:
     def generate_story_frame_video(self, agent, context_tasks):
         return Task(
             description=dedent(
-                f"""Use the context from the generated world elements and use that to extend the previously generated video - either from the world elements or the story frames. If you're using the story frames, repeat the extension process for each frame.
+                f"""For each frame in the generate_story_frames output, extend the most recently generated video. Use the context from the generated world elements if this is the first frame.
                 
                 {self.__tip_section()}"""   
             ),

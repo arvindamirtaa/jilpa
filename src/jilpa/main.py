@@ -21,7 +21,7 @@ class JilpaCrew:
 
         # Define your custom agents and tasks here
         story_writer_agent = agents.story_writer()
-        # custom_agent_2 = agents.animator()
+        animator_agent = agents.animator()
 
         # Custom tasks include agent name and variables as input
         generate_world_elements_task = tasks.generate_world_elements(
@@ -45,18 +45,18 @@ class JilpaCrew:
         )
 
         generate_world_video_task = tasks.generate_world_video(
-            story_writer_agent,
+            animator_agent,
             [generate_world_elements_task, generate_character_task]
         )
         
         generate_story_frame_video_task = tasks.generate_story_frame_video(
-            story_writer_agent,
+            animator_agent,
             [generate_world_elements_task, generate_character_task, generate_story_task, generate_world_video_task, generate_story_frames_task]
         )
 
         # Define your custom crew here
         crew = Crew(
-            agents=[story_writer_agent],
+            agents=[story_writer_agent, animator_agent],
             tasks=[generate_world_elements_task, generate_character_task, generate_world_video_task, generate_story_task, generate_story_frames_task, generate_story_frame_video_task],
             verbose=True,
         )
