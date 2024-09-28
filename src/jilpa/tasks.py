@@ -1,5 +1,11 @@
 from crewai import Task
 from textwrap import dedent
+from .dream_machine_generate_tool import LumaAIGenTool
+from .dream_machine_extend_tool import LumaAIExtendTool
+
+luma_gen_tool = LumaAIGenTool()
+luma_extend_tool = LumaAIExtendTool()
+
 
 class CustomTasks:
     def __tip_section(self):
@@ -58,6 +64,19 @@ class CustomTasks:
             expected_output="""Output should contain details of the world and immediate surroundings, characters in the scene, interactable and observable elements. It should be like a prompt for an image / video generation model - to be around 1000 characters and nothing else."""
         )
     
+    def generate_world_video(self, agent, context_tasks):
+        return Task(
+            description=dedent(
+                f"""Use the context from the generated world elements and use that to create a video of the world.
+                
+                {self.__tip_section()}"""   
+            ),
+            expected_output="The output should be the video id and URL of the generated video and nothing else.",
+            agent=agent,
+            context=context_tasks,
+            tools=[luma_gen_tool]
+        )
+    
     def generate_story_frames(self, agent, context_tasks):
         return Task(
             description=dedent(
@@ -70,6 +89,19 @@ class CustomTasks:
             agent=agent,
             expected_output="Output should be a series of frames. Each frame should be a prompt for an image / video generation model - to be around 1000 characters and nothing else.",
             context=context_tasks
+        )
+
+    def generate_story_frame_video(self, agent, context_tasks):
+        return Task(
+            description=dedent(
+                f"""Use the context from the generated world elements and use that to extend the previously generated video - either from the world elements or the story frames. If you're using the story frames, repeat the extension process for each frame.
+                
+                {self.__tip_section()}"""   
+            ),
+            expected_output="The output should be the video id and URL of the generated video and nothing else.",
+            agent=agent,
+            context=context_tasks,
+            tools=[luma_extend_tool]
         )
 
     def summarize_story(self, agent):

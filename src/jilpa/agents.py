@@ -14,10 +14,10 @@ class CustomAgents:
             backstory=dedent(f"""You are an experienced story writer who has written stories for many open world scenarios,
                 you have created many creative characters and world elements that are very unique an engaging"""),
             goal=dedent(f"""Create the screenplay with characters and world elements"""),
-            # tools=[tool_1, tool_2],
             allow_delegation=False,
             verbose=True,
             llm=self.OpenAIGPT4oMini,
+            max_iter=3,
         )
 
     def animator(self):

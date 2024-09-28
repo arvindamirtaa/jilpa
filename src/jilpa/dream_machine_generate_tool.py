@@ -15,14 +15,14 @@ class VideoGenPromptSchema(BaseModel):
 
 
 class LumaAIGenTool(BaseTool):
-    name: str = "Dream Machine Gen Tool"
+    name: str = "LumaAIGenTool"
     description: str = "Dream Machine Video Generation Tool that uses Lumaai API to generate a 5sec video from the input prompt."
     args_schema: Type[BaseModel] = VideoGenPromptSchema
 
     def _run(self, **kwargs) -> str:
         client = LumaAI()
 
-        scene_gen_prompt = kwargs.get("image_description")
+        scene_gen_prompt = kwargs.get("scene_gen_prompt")
         if not scene_gen_prompt:
             return "Scene gen prompt is required."
         generation = client.generations.create(
